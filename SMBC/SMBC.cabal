@@ -27,7 +27,7 @@ executable SMBC-exe
                       ,SMBC
                       ,connection
                       , hxt, HandsomeSoup, http-conduit, bytestring
-                      , split, async
+                      , split, async, directory
   default-language:    Haskell2010
 
 test-suite SMBC-test

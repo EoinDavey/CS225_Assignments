@@ -6,7 +6,7 @@ import Text.XML.HXT.Core
 import Text.HandsomeSoup
 import Data.List.Split
 import Control.Concurrent.Async
-import System.IO
+import System.Directory
 
 import qualified Data.ByteString.Lazy.Char8 as BL
 
@@ -23,6 +23,7 @@ main = do
                          >>. filter (not . null)
     let comicUrls = map (smbcComic ++) comics
     --mapM_ (\x -> (getImageLink manager x) >>= (saveImage manager)) $ take 1 comicUrls
+    createDirectoryIfMissing True "imgs"
     forConcurrently_  (take 100 comicUrls)  (\x -> (getImageLink manager x) >>= (saveImage manager))
 
 getBody:: Manager -> String -> IO BL.ByteString
